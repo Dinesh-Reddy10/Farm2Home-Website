@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Login - Farmers' Online Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        header {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 40px;
+        }
+
+        .login-option-container {
+            background: white;
+            width: 500px;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .login-option-container h2 {
+            margin-bottom: 20px;
+            color: #28a745;
+        }
+
+        .options {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .option {
+            width: 45%;
+            padding: 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid transparent;
+            text-align: center;
+        }
+
+        .option:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border-color: #28a745;
+        }
+
+        .option.farmer {
+            background-color: #ffecb3;
+        }
+
+        .option.customer {
+            background-color: #c8e6c9;
+        }
+
+        .login-container {
+            background: white;
+            width: 400px;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #28a745;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 12px 25px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .new-user {
+            margin-top: 15px;
+        }
+
+        .new-user a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .new-user a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function showLogin(userType) {
+            document.querySelector('.login-option-container').style.display = 'none';
+            document.querySelector('.login-container').style.display = 'block';
+            document.querySelector('#user-type').value = userType;
+            document.querySelector('.login-container h2').textContent = `Login as ${userType.charAt(0).toUpperCase() + userType.slice(1)}`;
+        }
+
+        function redirectToDashboard(event) {
+            event.preventDefault();
+            const userType = document.querySelector('#user-type').value;
+            const username = document.querySelector('input[name="username"]').value;
+            if (userType === 'farmer') {
+                window.location.href = `farmers-dashboard.html?username=${username}`;
+            } else {
+                window.location.href = 'index.html'; 
+            }
+        }
+	
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <span class="logo-icon">🌾</span>
+            <h1>Farmers' Market</h1>
+        </div>
+    </header>
+
+    <div class="login-option-container">
+        <h2>You are ?</h2>
+        <div class="options">
+            <div class="option farmer" onclick="showLogin('farmer')">
+                <h3>Farmer</h3>
+            </div>
+            <div class="option customer" onclick="showLogin('customer')">
+                <h3>Customer</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <form action="javascript:void(0);" onsubmit="redirectToDashboard(event)">
+            <input type="hidden" id="user-type" name="user-type">
+            <input type="text" name="username" placeholder="Username" required><br>
+            <input type="password" placeholder="Password" required><br>
+            <button type="submit">Login</button>
+        </form>
+
+        <div class="new-user">
+            <p>New user? <a href="registration.html">Create an account</a></p>
+        </div>
+    </div>
+</body>
+</html>

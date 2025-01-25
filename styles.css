@@ -1,0 +1,309 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+.header2{
+	background-color: white;
+	justify-content: center;
+	padding: 1px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-icon {
+    font-size: 2em;
+    margin-right: 10px;
+}
+
+ {
+    display: flex;
+    justify-content: right;
+    flex-grow: 1;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    align-items: center; 
+}
+
+ ul li {
+    margin: 15px 15px; 
+}
+
+ ul li a {
+    text-decoration: none;
+    color: black; 
+    font-size: 1.1em;
+    transition: color 0.2s, transform 0.2s;
+}
+
+ ul li a:hover {
+    color: green; 
+    transform: scale(0.3);
+}
+
+.search-container {
+    display: flex;
+    justify-content:space-between;
+    margin: auto;
+}
+
+.search-container input[type="text"] {
+    padding: 10px;
+    height: 35px;
+    width: 500px;
+    border: 1px solid #ddd;
+    border-radius: 20px 20px 20px 20px;
+    transition: border-color 0.3s;
+    justify-content: space-between;
+    margin: auto;
+}
+
+.search-container input[type="text"]:focus {
+    border-color: #4CAF50;
+}
+
+.search-container button {
+    padding: 10px;
+    border: none;
+    background-color: white;
+    color: black;
+    border-radius: 20px 20px 20px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.search-container button:hover {
+    background-color: orange;
+}
+
+.signup button{
+    padding: 10px;
+    border: none;
+    background-color: white;
+    color: black;
+    border-radius: 20px 20px 20px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.signup button:hover {
+    background-color: orange;
+}
+
+#hero {
+    background-image: url('https://media.istockphoto.com/id/543212762/photo/tractor-cultivating-field-at-spring.jpg?s=612x612&w=0&k=20&c=uJDy7MECNZeHDKfUrLNeQuT7A1IqQe89lmLREhjIJYU=');
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    width: 98.8%;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 0;
+}
+
+.hero-content h1 {
+    font-size: 4em;
+    margin: 0;
+}
+
+.hero-content p {
+    font-size: 1.5em;
+}
+
+#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+
+#products {
+    padding: 20px 20px;
+    text-align: center;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.product-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 20px;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    transition: box-shadow 0.3s;
+}
+
+.product-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.product-item img {
+    width: 100%;
+    height: auto;
+}
+
+.product-item button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.product-item button:hover {
+    background-color: #45a049;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+h2, h3, h4 {
+    color: #4CAF50;
+}
+
+h2 {
+    margin-top: 20px;
+    font-size: 2em;
+    text-align: center;
+}
+
+h3 {
+    margin-top: 15px;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+h4 {
+    margin-top: 10px;
+    font-size: 1.2em;
+}
+
+section {
+    padding: 20px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+#cart {
+    padding: 20px;
+}
+
+.cart-items {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.cart-item img {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.item-details {
+    flex-grow: 1;
+}
+
+.quantity {
+    margin-top: 10px;
+}
+
+.remove-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.remove-btn:hover {
+    background-color: #e60000;
+}
+
+.cart-summary {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.checkout-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.checkout-btn:hover {
+    background-color: #45a049;
+}
+
+
+.cart-icon {
+    font-size: 1.5em;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 10px; /* Padding around the cart text */
+    transition: background-color 0.3s; /* Transition effect for background color */
+}
+
+.cart-icon:hover {
+    background-color: rgba(255, 255, 255, 0.1); 
+}
+

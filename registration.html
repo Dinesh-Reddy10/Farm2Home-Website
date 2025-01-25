@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Registration - Farmers' Market</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        #registration-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            margin: 0 auto;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        div {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Farmers' Market Registration</h1>
+    </header>
+
+    <main>
+        <section id="registration-form">
+            <h2>Create Account</h2>
+            <form onsubmit="return handleRegister(event)">
+                <div>
+                    <label for="first-name">First Name:</label>
+                    <input type="text" id="first-name" required>
+                </div>
+                <div>
+                    <label for="last-name">Last Name:</label>
+                    <input type="text" id="last-name" required>
+                </div>
+                <div>
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" required>
+                </div>
+                <div>
+                    <label for="gender">Gender:</label>
+                    <select id="gender" required>
+                        <option value="" disabled selected>Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="mobile">Mobile Number:</label>
+                    <input type="tel" id="mobile" required>
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div>
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" required>
+                </div>
+                <div>
+                    <label for="password">Set Password:</label>
+                    <input type="password" id="password" required>
+                </div>
+                <div>
+                    <label for="confirm-password">Confirm Password:</label>
+                    <input type="password" id="confirm-password" required>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Farmers' Market. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function handleRegister(event) {
+            event.preventDefault(); 
+            const firstName = document.getElementById('first-name').value;
+            const lastName = document.getElementById('last-name').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match. Please try again.");
+                return false; // Prevent form submission
+            }
+
+            localStorage.setItem('username', firstName); 
+            alert(`Account created for ${firstName}!`);
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
