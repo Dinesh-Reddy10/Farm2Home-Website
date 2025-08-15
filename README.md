@@ -8,10 +8,10 @@ This project is built using **HTML**, **CSS**, and **JavaScript**.
 ## 📂 Project Structure
 
 Farm2Home/
-│── screenshots/
-    │── farmersdashboard.png
-    │── cart.png
-    │── customersdashboard.png
+│── screenshots/<br>
+    │── farmersdashboard.png<br>
+    │── cart.png<br>
+    │── customersdashboard.png<br>
 │── about.html # About Us page<br>
 │── cart.html # Shopping cart page<br>
 │── contact.html # Contact page<br>
