@@ -8,19 +8,19 @@ This project is built using **HTML**, **CSS**, and **JavaScript**.
 ## 📂 Project Structure
 
 Farm2Home/
-│── about.html # About Us page
-│── cart.html # Shopping cart page
-│── contact.html # Contact page
-│── FAQ.html # Frequently Asked Questions
-│── farmers-dashboard.html # Farmers' dashboard page
-│── index.html # Home page
-│── login.html # Login page
-│── privacy-policy.html # Privacy Policy
-│── registration.html # User registration page
-│── shipping-delivery-policy.html # Shipping & Delivery Policy
-│── terms-and-services.html # Terms & Services
-│── script.js # Main JavaScript file
-│── styles.css # Main stylesheet
+│── about.html # About Us page<br>
+│── cart.html # Shopping cart page<br>
+│── contact.html # Contact page<br>
+│── FAQ.html # Frequently Asked Questions<br>
+│── farmers-dashboard.html # Farmers' dashboard page<br>
+│── index.html # Home page<br>
+│── login.html # Login page<br>
+│── privacy-policy.html # Privacy Policy<br>
+│── registration.html # User registration page<br>
+│── shipping-delivery-policy.html # Shipping & Delivery Policy<br>
+│── terms-and-services.html # Terms & Services<br>
+│── script.js # Main JavaScript file<br>
+│── styles.css # Main stylesheet<br>
 
 
 ---
