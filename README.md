@@ -9,9 +9,9 @@ This project is built using **HTML**, **CSS**, and **JavaScript**.
 
 Farm2Home/<br>
 │── screenshots/<br>
-    &ensp;│── farmersdashboard.png<br>
-    &ensp;│── cart.png<br>
-    &ensp;│── customersdashboard.png<br>
+    &nbsp;│── farmersdashboard.png<br>
+    &nbsp;│── cart.png<br>
+    &nbsp;│── customersdashboard.png<br>
 │── about.html # About Us page<br>
 │── cart.html # Shopping cart page<br>
 │── contact.html # Contact page<br>
