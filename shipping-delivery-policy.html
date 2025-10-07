@@ -3,40 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shipping & Delivery Policy</title>
+    <title>Shipping & Delivery Policy - Farmers' Market</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <style>
+        .policy-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .policy-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .delivery-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .delivery-table th,
+        .delivery-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .delivery-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+
+        .delivery-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .area-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            background: #4CAF50;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-right: 5px;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 <body>
-    
     <header>
-    <div class="logo">
-        <span class="logo-icon">🌾</span>
-        <h1>Farmers Market</h1>
-    </div>
-    <div class="search-container">
-        <input type="text" placeholder="Search products..." />
-        <button type="button">Search</button>
-    </div>
-    <div class="signup">
-	<a href="login.html"><button>Login/Signup</button></a>
-    </div>
-           
+        <div class="logo">
+            <span class="logo-icon">🌾</span>
+            <h1>Farmers Market</h1>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search products..." />
+            <button type="button">Search</button>
+        </div>
+        <div class="signup">
+            <!-- Dynamically filled by authManager -->
+        </div>
     </header>
 
-    <section id="shipping">
-            <h2>Shipping & Delivery Policy</h2>
-            <p>
-                We are committed to ensuring that your orders are delivered promptly and securely. Here are the details of our shipping and delivery process:
-            </p>
+    <header class="header2">
+        <nav>
             <ul>
-                <li><strong>Shipping Charges:</strong> A flat rate of ₹50 applies to all orders under ₹500. Free shipping for orders above ₹500.</li>
-                <li><strong>Delivery Time:</strong> Orders are processed within 24 hours and typically delivered within 3-5 business days.</li>
-                <li><strong>Tracking:</strong> A tracking number will be provided once your order is dispatched.</li>
-                <li><strong>Delivery Areas:</strong> We currently deliver across Andhra Pradesh and Telangana.</li>
-                <li><strong>Failed Deliveries:</strong> If the delivery is unsuccessful after two attempts, the order will be canceled and refunded.</li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#products">Products</a></li>
+                <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
-            <p>Need help? Reach out at: <a href="contact.html">Contact Us</a>.</p>
-        </section>
+        </nav>
+    </header>
+
+    <main>
+        <div class="policy-container">
+            <div class="policy-section">
+                <h1>Shipping & Delivery Policy</h1>
+                <p style="color: #666; margin-bottom: 30px;">Last updated: December 2024</p>
+
+                <div style="line-height: 1.8;">
+                    <p>We are committed to ensuring that your fresh farm products are delivered promptly and securely. Here are the details of our shipping and delivery process:</p>
+
+                    <h3 style="color: #4CAF50; margin-top: 30px;">Shipping Charges</h3>
+                    <p>We offer transparent and affordable shipping:</p>
+                    <ul style="margin-left: 20px; margin-bottom: 20px;">
+                        <li><strong>Free Shipping:</strong> On all orders above ₹500</li>
+                        <li><strong>Standard Shipping:</strong> Flat rate of ₹50 for orders under ₹500</li>
+                        <li><strong>Express Delivery:</strong> ₹100 additional charge (available in select areas)</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <strong>💡 Pro Tip:</strong> Combine orders with friends or family to reach the ₹500 free shipping threshold!
+                    </div>
+
+                    <h3 style="color: #4CAF50; margin-top: 30px;">Delivery Timeframes</h3>
+                    <p>Orders are typically processed and shipped within 24 hours. Delivery times vary by location:</p>
+
+                    <table class="delivery-table">
+                        <thead>
+                            <tr>
+                                <th>Location Type</th>
+                                <th>Processing Time</th>
+                                <th>Delivery Time</th>
+                                <th>Total Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="area-badge">Metro Cities</span></td>
+                                <td>24 hours</td>
+                                <td>1-2 days</td>
+                                <td>2-3 days</td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">Tier 2 Cities</span></td>
+                                <td>24 hours</td>
+                                <td>2-3 days</td>
+                                <td>3-4 days</td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">Tier 3 Cities</span></td>
+                                <td>24 hours</td>
+                                <td>3-4 days</td>
+                                <td>4-5 days</td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">Rural Areas</span></td>
+                                <td>24-48 hours</td>
+                                <td>4-5 days</td>
+                                <td>5-7 days</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 style="color: #4CAF50; margin-top: 30px;">Delivery Areas</h3>
+                    <p>We currently deliver across India with the following coverage:</p>
+                    <ul style="margin-left: 20px; margin-bottom: 20px;">
+                        <li><strong>All Major Cities:</strong> Full service available</li>
+                        <li><strong>Tier 2 & 3 Cities:</strong> Standard delivery available</li>
+                        <li><strong>Rural Areas:</strong> Service available with extended delivery times</li>
+                        <li><strong>Remote Locations:</strong> Contact us for availability</li>
+                    </ul>
+
+                    <h3 style="color: #4CAF50; margin-top: 30px;">Order Tracking</h3>
+                    <p>Once your order is shipped, you'll receive:</p>
+                    <ul style="margin-left: 20px; margin-bottom: 20px;">
+                        <li>Shipping confirmation email with tracking number</li>
+                        <li>Real-time tracking updates via SMS and email</li>
+                        <li>Estimated delivery date</li>
+                        <li>Delivery agent contact information</li>
+                    </ul>
+
+                    <h3 style="color: #4CAF50; margin-top: 30px;">Delivery Process</h3>
+                    <p>Our delivery process ensures your products reach you in perfect condition:</p>
+                    <ol style="margin-left: 20px; margin-bottom: 20px;">
+                        <li><strong>Order Processing:</strong> Orders are verified and packed within 24 hours</li>
+                        <li><strong>Quality Check:</strong> Each product undergoes quality inspection</li>
+                        <li><strong>Special Packaging:</strong> Temperature-controlled packaging for perishables</li>
+                        <li><strong>Shipping:</strong> Handed over to our delivery partners</li>
+                        <li><strong>Delivery:</strong> Delivered to your doorstep with contactless option</li>
+                    </ol>
+
+                    <h3 style="color: #4CAF50; margin-top: 30px;">Failed Deliveries</h3>
+                    <p>If delivery cannot be completed:</p>
+                    <ul style="margin-left: 20px; margin-bottom: 20px;">
+                        <li><strong>First Attempt:</strong> Delivery agent will call before visiting</li>
+                        <li><strong>Second Attempt:</strong> Made the next business day</li>
+                        <li><strong>Third Attempt:</strong> Final attempt before order cancellation</li>
+                        <li><strong>Cancellation:</strong> If unsuccessful after 3 attempts, order is cancelled and refunded</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <strong>⚠️ Important:</strong> Please ensure someone is available to receive the delivery, especially for perishable items.
+                    </div>
+
+                    <h3 style="color: #4CAF50; margin-top: 30px;">Special Handling</h3>
+                    <p>For perishable and fragile items:</p>
+                    <ul style="margin-left: 20px; margin-bottom: 20px;">
+                        <li><strong>Fresh Produce:</strong> Temperature-controlled packaging</li>
+                        <li><strong>Eggs & Dairy:</strong> Special cushioning and cooling</li>
+                        <li><strong>Fragile Items:</strong> Extra protective packaging</li>
+                        <li><strong>Organic Products:</strong> Separate packaging to maintain quality</li>
+                    </ul>
+
+                    <h3 style="color: #4CAF50; margin-top: 30px;">Delivery Restrictions</h3>
+                    <p>Some restrictions apply during:</p>
+                    <ul style="margin-left: 20px; margin-bottom: 20px;">
+                        <li><strong>Weather Conditions:</strong> Delivery may be delayed during heavy rains/storms</li>
+                        <li><strong>Holidays:</strong> No delivery on national holidays</li>
+                        <li><strong>Local Restrictions:</strong> Subject to local government guidelines</li>
+                    </ul>
+
+                    <h3 style="color: #4CAF50; margin-top: 30px;">Contact & Support</h3>
+                    <p>For delivery-related inquiries:</p>
+                    <ul style="margin-left: 20px; margin-bottom: 20px;">
+                        <li><strong>Delivery Support:</strong> 1800-234-5678</li>
+                        <li><strong>Email:</strong> delivery@farmersmarket.com</li>
+                        <li><strong>Live Chat:</strong> Available on our website</li>
+                        <li><strong>Hours:</strong> Mon-Sat, 8:00 AM - 8:00 PM</li>
+                    </ul>
+
+                    <div style="background: #e8f5e9; padding: 20px; border-radius: 10px; margin-top: 30px;">
+                        <p style="margin: 0;"><strong>Need immediate delivery assistance?</strong> <a href="contact.html" style="color: #4CAF50;">Contact our delivery support team</a> for real-time help with your order.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
     <footer>
         <p>&copy; 2024 Farmers' Online Store. All rights reserved.</p>
     </footer>
