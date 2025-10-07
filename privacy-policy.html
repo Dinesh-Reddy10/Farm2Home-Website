@@ -3,40 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy</title>
+    <title>Privacy Policy - Farmers' Market</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    
     <header>
-    <div class="logo">
-        <span class="logo-icon">🌾</span>
-        <h1>Farmers Market</h1>
-    </div>
-    <div class="search-container">
-        <input type="text" placeholder="Search products..." />
-        <button type="button">Search</button>
-    </div>
-    <div class="signup">
-	<a href="login.html"><button>Login/Signup</button></a>
-    </div>
-           
+        <div class="logo">
+            <span class="logo-icon">🌾</span>
+            <h1>Farmers Market</h1>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search products..." />
+            <button type="button">Search</button>
+        </div>
+        <div class="signup">
+            <!-- Dynamically filled by authManager -->
+        </div>
     </header>
 
-    <section id="privacy">
-            <h2>Privacy Policy</h2>
-            <p>
-                Your privacy is important to us. This Privacy Policy outlines how we collect, use, and protect your personal information.
-            </p>
+    <header class="header2">
+        <nav>
             <ul>
-                <li><strong>Information Collection:</strong> We collect personal information such as name, email, and address during account registration and checkout.</li>
-                <li><strong>Use of Information:</strong> We use your information to process orders, communicate with you, and improve our services.</li>
-                <li><strong>Data Sharing:</strong> We do not share your data with third parties, except for essential service providers like payment gateways and delivery partners.</li>
-                <li><strong>Security:</strong> We implement robust security measures to protect your data from unauthorized access.</li>
-                <li><strong>Your Rights:</strong> You have the right to access, update, or delete your personal information at any time.</li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#products">Products</a></li>
+                <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
-            <p>Have questions? Contact us at: <a href="contact.html">Contact Us</a>.</p>
+        </nav>
+    </header>
+
+    <main style="max-width: 800px; margin: 0 auto; padding: 40px 20px;">
+        <section class="checkout-section">
+            <h1>Privacy Policy</h1>
+            <p style="color: #666; margin-bottom: 30px;">Last updated: December 2024</p>
+
+            <div style="line-height: 1.8;">
+                <p>Your privacy is important to us. This Privacy Policy outlines how we collect, use, and protect your personal information.</p>
+
+                <h3 style="color: #4CAF50; margin-top: 30px;">Information Collection</h3>
+                <p>We collect personal information such as name, email, address, and phone number during account registration and checkout to provide you with the best shopping experience.</p>
+
+                <h3 style="color: #4CAF50; margin-top: 30px;">Use of Information</h3>
+                <p>We use your information to:</p>
+                <ul style="margin-left: 20px; margin-bottom: 20px;">
+                    <li>Process your orders and payments</li>
+                    <li>Communicate with you about your orders</li>
+                    <li>Improve our services and website</li>
+                    <li>Send you updates about new products and offers (with your consent)</li>
+                </ul>
+
+                <h3 style="color: #4CAF50; margin-top: 30px;">Data Sharing</h3>
+                <p>We do not sell your personal information to third parties. We may share your data with essential service providers like payment gateways and delivery partners only to complete your orders.</p>
+
+                <h3 style="color: #4CAF50; margin-top: 30px;">Security</h3>
+                <p>We implement robust security measures to protect your data from unauthorized access, including encryption and secure servers.</p>
+
+                <h3 style="color: #4CAF50; margin-top: 30px;">Your Rights</h3>
+                <p>You have the right to:</p>
+                <ul style="margin-left: 20px; margin-bottom: 20px;">
+                    <li>Access your personal information</li>
+                    <li>Update or correct your data</li>
+                    <li>Delete your account</li>
+                    <li>Opt-out of marketing communications</li>
+                </ul>
+
+                                <p>Have questions about our privacy practices? <a href="contact.html" style="color: #4CAF50;">Contact Us</a>.</p>
+            </div>
         </section>
+    </main>
+
     <footer>
         <p>&copy; 2024 Farmers' Online Store. All rights reserved.</p>
     </footer>
