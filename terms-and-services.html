@@ -3,40 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms & Services</title>
+    <title>Terms & Services - Farmers' Market</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    
     <header>
-    <div class="logo">
-        <span class="logo-icon">🌾</span>
-        <h1>Farmers Market</h1>
-    </div>
-    <div class="search-container">
-        <input type="text" placeholder="Search products..." />
-        <button type="button">Search</button>
-    </div>
-    <div class="signup">
-	<a href="login.html"><button>Login/Signup</button></a>
-    </div>
-           
+        <div class="logo">
+            <span class="logo-icon">🌾</span>
+            <h1>Farmers Market</h1>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search products..." />
+            <button type="button">Search</button>
+        </div>
+        <div class="signup">
+            <!-- Dynamically filled by authManager -->
+        </div>
     </header>
 
-    <section id="terms">
-            <h2>Terms & Services</h2>
-            <p>
-                Welcome to Farmers Online Store. These Terms & Services govern your use of our website. By accessing or using our services, you agree to be bound by these terms.
-            </p>
+    <header class="header2">
+        <nav>
             <ul>
-                <li><strong>Eligibility:</strong> You must be 18 years or older to make purchases on our platform.</li>
-                <li><strong>Account Responsibility:</strong> Users are responsible for maintaining the confidentiality of their account information.</li>
-                <li><strong>Prohibited Activities:</strong> Users must not engage in fraudulent or harmful behavior on the platform.</li>
-                <li><strong>Intellectual Property:</strong> All content on the website, including images and product descriptions, are the property of Farmers Market or its licensors.</li>
-                <li><strong>Termination:</strong> We reserve the right to suspend or terminate your account if these terms are violated.</li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#products">Products</a></li>
+                <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
-            <p>For further inquiries, contact us at: <a href="contact.html">Contact Us</a>.</p>
+        </nav>
+    </header>
+
+    <main style="max-width: 800px; margin: 0 auto; padding: 40px 20px;">
+        <section class="checkout-section">
+            <h1>Terms & Services</h1>
+            <p style="color: #666; margin-bottom: 30px;">Last updated: December 2024</p>
+
+            <div style="line-height: 1.8;">
+                <p>Welcome to Farmers Online Store. These Terms & Services govern your use of our website and services. By accessing or using our platform, you agree to be bound by these terms.</p>
+
+                <h3 style="color: #4CAF50; margin-top: 30px;">1. Eligibility</h3>
+                <p>You must be at least 18 years old to create an account and make purchases on our platform. By using our services, you represent that you meet this age requirement.</p>
+
+                <h3 style="color: #4CAF50; margin-top: 30px;">2. Account Responsibility</h3>
+                <p>You are responsible for:</p>
+                <ul style="margin-left: 20px; margin-bottom: 20px;">
+                    <li>Maintaining the confidentiality of your account credentials</li>
+                    <li>All activities that occur under your account</li>
+                    <li>Providing accurate and complete information</li>
+                    <li>Updating your information promptly when changes occur</li>
+                </ul>
+
+                <h3 style="color: #4CAF50; margin-top: 30px;">3. Prohibited Activities</h3>
+                <p>Users must not engage in:</p>
+                <ul style="margin-left: 20px; margin-bottom: 20px;">
+                    <li>Fraudulent or illegal activities</li>
+                    <li>Uploading false product information</li>
+                    <li>Attempting to circumvent security measures</li>
+                    <li>Harassing other users or staff</li>
+                    <li>Distributing malware or harmful code</li>
+                    <li>Commercial use of data without permission</li>
+                </ul>
+
+                <h3 style="color: #4CAF50; margin-top: 30px;">4. Intellectual Property</h3>
+                <p>All content on the website, including images, product descriptions, logos, and text, are the property of Farmers Market or its licensors and are protected by copyright laws. Unauthorized use may violate intellectual property rights.</p>
+
+                <h3 style="color: #4CAF50; margin-top: 30px;">5. Product Listings</h3>
+                <p>Farmers are responsible for:</p>
+                <ul style="margin-left: 20px; margin-bottom: 20px;">
+                    <li>Accurate product descriptions and images</li>
+                    <li>Maintaining adequate stock levels</li>
+                    <li>Providing quality products as described</li>
+                    <li>Timely order fulfillment</li>
+                </ul>
+
+                <h3 style="color: #4CAF50; margin-top: 30px;">6. Pricing and Payments</h3>
+                <p>All prices are in Indian Rupees (₹). We reserve the right to modify prices at any time. Payments are processed through secure payment gateways, and we do not store your payment information.</p>
+
+                <h3 style="color: #4CAF50; margin-top: 30px;">7. Order Cancellation</h3>
+                <p>Orders can be cancelled within 30 minutes of placement. After this period, orders enter processing and may not be cancelled. Farmers may cancel orders if products are unavailable, with proper notification to customers.</p>
+
+                <h3 style="color: #4CAF50; margin-top: 30px;">8. Termination</h3>
+                <p>We reserve the right to suspend or terminate your account if these terms are violated. You may terminate your account at any time by contacting customer support.</p>
+
+                <h3 style="color: #4CAF50; margin-top: 30px;">9. Limitation of Liability</h3>
+                <p>Farmers Market shall not be liable for any indirect, incidental, or consequential damages arising from the use of our platform. Our total liability shall not exceed the amount paid for the products in question.</p>
+
+                <h3 style="color: #4CAF50; margin-top: 30px;">10. Changes to Terms</h3>
+                <p>We may update these terms periodically. Continued use of our services after changes constitutes acceptance of the modified terms.</p>
+
+                <h3 style="color: #4CAF50; margin-top: 30px;">11. Governing Law</h3>
+                <p>These terms are governed by the laws of India. Any disputes shall be subject to the exclusive jurisdiction of courts in Hyderabad, Telangana.</p>
+
+                <h3 style="color: #4CAF50; margin-top: 30px;">12. Contact Information</h3>
+                <p>For questions about these terms, please contact us at:</p>
+                <ul style="margin-left: 20px; margin-bottom: 20px;">
+                    <li>Email: legal@farmersmarket.com</li>
+                    <li>Phone: 1800-123-4567</li>
+                    <li>Address: 123 Farm Road, Agricultural Zone, Hyderabad, Telangana 500001</li>
+                </ul>
+
+                <div style="background: #e8f5e9; padding: 20px; border-radius: 10px; margin-top: 30px;">
+                    <p style="margin: 0;"><strong>Need help understanding our terms?</strong> <a href="contact.html" style="color: #4CAF50;">Contact our support team</a> for clarification.</p>
+                </div>
+            </div>
         </section>
+    </main>
+
     <footer>
         <p>&copy; 2024 Farmers' Online Store. All rights reserved.</p>
     </footer>
