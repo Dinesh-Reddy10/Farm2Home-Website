@@ -4,142 +4,355 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
     <title>Registration - Farmers' Market</title>
     <style>
         body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            justify-content: center;
         }
 
-        #registration-form {
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 350px;
-            margin: 0 auto;
+        .registration-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
         }
 
-        h1, h2 {
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-icon {
+            font-size: 3em;
+            margin-right: 15px;
+        }
+
+        .logo h1 {
+            color: #4CAF50;
+            font-size: 2em;
             text-align: center;
         }
 
-        div {
-            margin-bottom: 15px;
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.8em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
         }
 
         label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
         }
 
         input, select {
             width: 100%;
-            padding: 8px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
             box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #4CAF50;
         }
 
         button {
             width: 100%;
-            padding: 10px;
-            background-color: #28a745;
+            padding: 15px;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
             cursor: pointer;
-            font-size: 16px;
+            transition: all 0.3s ease;
+            margin-top: 10px;
         }
 
         button:hover {
-            background-color: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .login-link a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .user-type-selection {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .user-type-option {
+            padding: 20px;
+            border: 3px solid #e0e0e0;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .user-type-option.selected {
+            border-color: #4CAF50;
+            background-color: #e8f5e9;
+        }
+
+        .user-type-option h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+
+        .user-type-option p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .farmer-fields {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .registration-container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .user-type-selection {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Farmers' Market Registration</h1>
-    </header>
+    <div class="registration-container">
+        <div class="logo">
+            <span class="logo-icon">🌾</span>
+            <h1>Farmers' Market</h1>
+        </div>
 
-    <main>
-        <section id="registration-form">
-            <h2>Create Account</h2>
-            <form onsubmit="return handleRegister(event)">
-                <div>
-                    <label for="first-name">First Name:</label>
-                    <input type="text" id="first-name" required>
+        <h2>Create Your Account</h2>
+
+        <form id="registrationForm" onsubmit="return handleRegister(event)">
+            <div class="user-type-selection">
+                <div class="user-type-option" onclick="selectUserType('customer')" id="customerOption">
+                    <h3>👥 Customer</h3>
+                    <p>I want to buy fresh products</p>
                 </div>
-                <div>
-                    <label for="last-name">Last Name:</label>
-                    <input type="text" id="last-name" required>
+                <div class="user-type-option" onclick="selectUserType('farmer')" id="farmerOption">
+                    <h3>👨‍🌾 Farmer</h3>
+                    <p>I want to sell my products</p>
                 </div>
-                <div>
-                    <label for="dob">Date of Birth:</label>
-                    <input type="date" id="dob" required>
+            </div>
+            <input type="hidden" id="userType" name="userType" value="customer" required>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">First Name *</label>
+                    <input type="text" id="firstName" name="firstName" required>
                 </div>
-                <div>
-                    <label for="gender">Gender:</label>
-                    <select id="gender" required>
-                        <option value="" disabled selected>Select Gender</option>
+                <div class="form-group">
+                    <label for="lastName">Last Name *</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="mobile">Mobile Number *</label>
+                <input type="tel" id="mobile" name="mobile" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob" name="dob">
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender">
+                        <option value="">Select</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                         <option value="other">Other</option>
                     </select>
                 </div>
-                <div>
-                    <label for="mobile">Mobile Number:</label>
-                    <input type="tel" id="mobile" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address *</label>
+                <input type="text" id="address" name="address" placeholder="Enter your complete address" required>
+            </div>
+
+            <div class="farmer-fields" id="farmerFields">
+                <div class="form-group">
+                    <label for="farmName">Farm Name</label>
+                    <input type="text" id="farmName" name="farmName">
                 </div>
-                <div>
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" required>
+                <div class="form-group">
+                    <label for="farmLocation">Farm Location</label>
+                    <input type="text" id="farmLocation" name="farmLocation">
                 </div>
-                <div>
-                    <label for="address">Address:</label>
-                    <input type="text" id="address" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="password">Password *</label>
+                    <input type="password" id="password" name="password" required>
                 </div>
-                <div>
-                    <label for="password">Set Password:</label>
-                    <input type="password" id="password" required>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password *</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
                 </div>
-                <div>
-                    <label for="confirm-password">Confirm Password:</label>
-                    <input type="password" id="confirm-password" required>
-                </div>
-                <button type="submit">Register</button>
-            </form>
-        </section>
-    </main>
+            </div>
+
+            <button type="submit">Create Account</button>
+        </form>
+
+        <div class="login-link">
+            <p>Already have an account? <a href="login.html">Login here</a></p>
+        </div>
+    </div>
 
     <footer>
         <p>&copy; 2024 Farmers' Market. All rights reserved.</p>
     </footer>
 
     <script>
-        function handleRegister(event) {
-            event.preventDefault(); 
-            const firstName = document.getElementById('first-name').value;
-            const lastName = document.getElementById('last-name').value;
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirm-password').value;
+        function selectUserType(type) {
+            document.getElementById('userType').value = type;
+            
+            // Update UI
+            document.getElementById('customerOption').classList.remove('selected');
+            document.getElementById('farmerOption').classList.remove('selected');
+            document.getElementById(type + 'Option').classList.add('selected');
+            
+            // Show/hide farmer fields
+            const farmerFields = document.getElementById('farmerFields');
+            if (type === 'farmer') {
+                farmerFields.style.display = 'block';
+            } else {
+                farmerFields.style.display = 'none';
+            }
+        }
 
+        function handleRegister(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const password = form.password.value;
+            const confirmPassword = form.confirmPassword.value;
+            const userType = form.userType.value;
+            const firstName = form.firstName.value;
+
+            // Password validation
             if (password !== confirmPassword) {
                 alert("Passwords do not match. Please try again.");
-                return false; // Prevent form submission
+                return false;
             }
 
-            localStorage.setItem('username', firstName); 
-            alert(`Account created for ${firstName}!`);
-            window.location.href = 'index.html';
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters long.");
+                return false;
+            }
+
+            // Create user object
+            const userData = {
+                type: userType,
+                firstName: firstName,
+                lastName: form.lastName.value,
+                email: form.email.value,
+                mobile: form.mobile.value,
+                address: form.address.value,
+                dob: form.dob.value,
+                gender: form.gender.value,
+                farmName: form.farmName?.value || '',
+                farmLocation: form.farmLocation?.value || '',
+                registrationDate: new Date().toISOString()
+            };
+
+            // Save user data
+            localStorage.setItem('farm2home_current_user', JSON.stringify(userData));
+
+            // Show success message
+            alert(`🎉 Account created successfully!\n\nWelcome to Farmers' Market, ${firstName}!`);
+            
+            // Redirect based on user type
+            if (userType === 'farmer') {
+                window.location.href = 'farmers-dashboard.html';
+            } else {
+                window.location.href = 'index.html';
+            }
+
+            return false;
         }
+
+        // Initialize form
+        document.addEventListener('DOMContentLoaded', function() {
+            selectUserType('customer');
+            
+            // Check if already logged in
+            const currentUser = JSON.parse(localStorage.getItem('farm2home_current_user'));
+            if (currentUser) {
+                if (currentUser.type === 'farmer') {
+                    window.location.href = 'farmers-dashboard.html';
+                } else {
+                    window.location.href = 'index.html';
+                }
+            }
+        });
     </script>
 </body>
 </html>
