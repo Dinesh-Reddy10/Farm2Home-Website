@@ -13,6 +13,8 @@ Farm2Home/<br>
     &nbsp;&nbsp;&nbsp;&nbsp;│── cart.png<br>
     &nbsp;&nbsp;&nbsp;&nbsp;│── customersdashboard.png<br>
 │── about.html # About Us page<br>
+│── checkout.html # proceed to checkout page<br>
+│── cart-manager.js # cart javascript file page<br>
 │── cart.html # Shopping cart page<br>
 │── contact.html # Contact page<br>
 │── FAQ.html # Frequently Asked Questions<br>
@@ -50,11 +52,12 @@ Farm2Home/<br>
 
 ## 📸 Screenshots
 
-### 🏠 Homepage
-![Homepage](screenshots/customersdashboard.png)
-
 ### 🛒 Cart Page
-![Cart Page](screenshots/cart.png)
+<img width="1919" height="905" alt="image" src="https://github.com/user-attachments/assets/e8377c2b-cc1d-4919-bb7a-89ba030873d3" />
+
+### 🛒 Customer Page
+<img width="1919" height="908" alt="image" src="https://github.com/user-attachments/assets/6d347f24-feb0-4ce9-94d1-ed450868d2dc" />
 
 ### 📊 Farmer Dashboard
-![Farmer Dashboard](screenshots/farmersdashboard.png)
+<img width="1919" height="907" alt="image" src="https://github.com/user-attachments/assets/8d97de8d-1ebb-43f1-a6ae-923a60f4941d" />
+
