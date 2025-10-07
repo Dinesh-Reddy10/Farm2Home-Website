@@ -4,43 +4,266 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
     <title>Contact - Farmers' Market</title>
+    <style>
+        .contact-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-form {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 2px solid #e8f5e9;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-method:hover {
+            border-color: #4CAF50;
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            font-size: 2em;
+            margin-right: 15px;
+            color: #4CAF50;
+        }
+
+        .contact-details h4 {
+            margin: 0 0 5px 0;
+            color: #333;
+        }
+
+        .contact-details p {
+            margin: 0;
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
-    <div class="logo">
-        <span class="logo-icon">🌾</span>
-        <h1>Farmers Market</h1>
-    </div>
-    <div class="search-container">
-        <input type="text" placeholder="Search products..." />
-        <button type="button">Search</button>
-    </div>
-    <div class="signup">
-	<a href="login.html"><button>Login/Signup</button></a>
-    </div>
-           
+        <div class="logo">
+            <span class="logo-icon">🌾</span>
+            <h1>Farmers Market</h1>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search products..." />
+            <button type="button">Search</button>
+        </div>
+        <div class="signup">
+            <!-- Dynamically filled by authManager -->
+        </div>
     </header>
-	 <main>
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <p>If you have any questions or need support, feel free to reach out to us.</p>
-        </section>
 
-        <section id="toll-free">
-            <h3>Toll-Free Numbers</h3>
+    <header class="header2">
+        <nav>
             <ul>
-                <li>Customer Support: 1800-123-4567</li>
-                <li>Order Inquiries: 1800-234-5678</li>
-                <li>Feedback and Suggestions: 1800-345-6789</li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#products">Products</a></li>
+                <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
-        </section>
+        </nav>
+    </header>
 
-        
+    <main>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>Get In Touch</h2>
+                <p>We're here to help you with any questions about our products, orders, or services.</p>
+
+                <div class="contact-method">
+                    <div class="contact-icon">📞</div>
+                    <div class="contact-details">
+                        <h4>Customer Support</h4>
+                        <p>1800-123-4567</p>
+                        <small>Available 24/7</small>
+                    </div>
+                </div>
+
+                <div class="contact-method">
+                    <div class="contact-icon">📦</div>
+                    <div class="contact-details">
+                        <h4>Order Inquiries</h4>
+                        <p>1800-234-5678</p>
+                        <small>Mon-Sat: 8AM-8PM</small>
+                    </div>
+                </div>
+
+                <div class="contact-method">
+                    <div class="contact-icon">💬</div>
+                    <div class="contact-details">
+                        <h4>Feedback & Suggestions</h4>
+                        <p>1800-345-6789</p>
+                        <small>We value your input</small>
+                    </div>
+                </div>
+
+                <div class="contact-method">
+                    <div class="contact-icon">✉️</div>
+                    <div class="contact-details">
+                        <h4>Email Support</h4>
+                        <p>support@farmersmarket.com</p>
+                        <small>Response within 2 hours</small>
+                    </div>
+                </div>
+
+                <div class="contact-method">
+                    <div class="contact-icon">🏢</div>
+                    <div class="contact-details">
+                        <h4>Office Address</h4>
+                        <p>123 Farm Road, Agricultural Zone<br>Hyderabad, Telangana 500001</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h2>Send us a Message</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="order">Order Issue</option>
+                            <option value="product">Product Question</option>
+                            <option value="delivery">Delivery Problem</option>
+                            <option value="refund">Refund Request</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Please describe your inquiry in detail..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
     </main>
 
     <footer>
         <p>&copy; 2024 Farmers Online Store</p>
     </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            
+            // Simulate form submission
+            alert(`Thank you, ${name}! Your message has been sent successfully.\nWe'll respond to ${email} within 24 hours.`);
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Pre-fill form if user is logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = JSON.parse(localStorage.getItem('farm2home_current_user'));
+            if (currentUser) {
+                document.getElementById('name').value = currentUser.firstName + ' ' + (currentUser.lastName || '');
+                document.getElementById('email').value = currentUser.email || '';
+                document.getElementById('phone').value = currentUser.mobile || '';
+            }
+        });
+    </script>
 </body>
 </html>
