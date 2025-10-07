@@ -4,30 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <script src="cart-manager.js" defer></script>
     <script src="script.js" defer></script>
     <title>Farmers' Online Store</title>
 </head>
 <body>
     <header>
-    <div class="logo">
-        <span class="logo-icon">🌾</span>
-        <h1>Farmers Market</h1>
-    </div>
-    <div class="search-container">
-        <input type="text" placeholder="Search products..." />
-        <button type="button">Search</button>
-    </div>
-    <div class="signup">
-	<a href="login.html"><button>Login/Signup</button></a>
-    </div>
-           
+        <div class="logo">
+            <span class="logo-icon">🌾</span>
+            <h1>Farmers Market</h1>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search products..." />
+            <button type="button">Search</button>
+        </div>
+        <div class="signup">
+            <!-- Dynamically filled by authManager -->
+        </div>
     </header>
+    
     <header class="header2">
-	<ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Products</a></li>
-            <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
-         </ul>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
     <section id="hero">
@@ -36,205 +41,268 @@
             <p><i>Connecting Farmers through the Globe!</i></p>
         </div>
     </section>
-	<marquee behavior="alternate" scrollamount="10"><img src="https://media.assettype.com/thebridgechronicle%2F2024-10-24%2F4wbqcbbn%2FChilli-Farming.jpeg?w=480&dpr=2&auto=format%2Ccompress&fit=max&q=85" height="300" width="450">
-			<img src="https://static.toiimg.com/thumb/msid-111157437,width-400,height-225,resizemode-72/111157437.jpg" height="300" width="450">
-			<img src="https://glasrestaurant.ie/wp-content/uploads/2022/09/glasrestaurant_carrot.jpg" height="300" width="450">
-			<img src="https://goodineverygrain.ca/wp-content/uploads/2021/06/wheat-berries-bowl.png" height="300" width="450">
-			<img src="https://hub.suttons.co.uk/wp-content/uploads/2023/04/group-of-sweetcorn-with-husks.jpg" height="300" width="450">
-			<img src="https://jivabhumi.com/cdn/shop/products/Groundnut_DSC4976_cf58b2bb-a302-434f-840b-6db24f06da73.jpg?v=1670224699" height="300" width="450">
-			<img src="https://www.healthyfood.com/wp-content/uploads/2020/01/Bigger-bodies-need-bigger-vege-serves-iStock-589415708-1100x900-500x409.jpg" height="300" width="450">
-			<img src="https://fun-18592.kxcdn.com/media/images/Africa_Pulses_header.jpg" height="300" width="450">
-			<img src="https://m.media-amazon.com/images/I/71wTqVF7ZwL.AC_UF1000,1000_QL80.jpg" height="300" width="450">
-			<img src="https://www.bhf.org.uk/-/media/images/information-support/heart-matters/heart-matters/summer-2018/nutrition/garlic_ss_0518_noexp_620x400.jpg?rev=c6be86ddedc546d2a2df177d1e9e024d" height="300" width="450">
 
-		</marquee>
+    <marquee behavior="alternate" scrollamount="10">
+        <img src="https://media.assettype.com/thebridgechronicle%2F2024-10-24%2F4wbqcbbn%2FChilli-Farming.jpeg?w=480&dpr=2&auto=format%2Ccompress&fit=max&q=85" height="300" width="450">
+        <img src="https://static.toiimg.com/thumb/msid-111157437,width-400,height-225,resizemode-72/111157437.jpg" height="300" width="450">
+        <img src="https://glasrestaurant.ie/wp-content/uploads/2022/09/glasrestaurant_carrot.jpg" height="300" width="450">
+        <img src="https://goodineverygrain.ca/wp-content/uploads/2021/06/wheat-berries-bowl.png" height="300" width="450">
+        <img src="https://hub.suttons.co.uk/wp-content/uploads/2023/04/group-of-sweetcorn-with-husks.jpg" height="300" width="450">
+        <img src="https://jivabhumi.com/cdn/shop/products/Groundnut_DSC4976_cf58b2bb-a302-434f-840b-6db24f06da73.jpg?v=1670224699" height="300" width="450">
+        <img src="https://www.healthyfood.com/wp-content/uploads/2020/01/Bigger-bodies-need-bigger-vege-serves-iStock-589415708-1100x900-500x409.jpg" height="300" width="450">
+        <img src="https://theexchange.africa/wp-content/uploads/2023/02/Pulses_01_900.jpg" height="300" width="450">
+        <img src="https://m.media-amazon.com/images/I/71wTqVF7ZwL.AC_UF1000,1000_QL80.jpg" height="300" width="450">
+        <img src="https://www.bhf.org.uk/-/media/images/information-support/heart-matters/heart-matters/summer-2018/nutrition/garlic_ss_0518_noexp_620x400.jpg?rev=c6be86ddedc546d2a2df177d1e9e024d" height="300" width="450">
+    </marquee>
+
     <section id="products">
         <h2>Our Products</h2>
-        <div class="product-list">
-             <div class="product-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Tomato_je.jpg" alt="Fresh Tomatoes">
-                <h3>Fresh Tomatoes</h3>
-                <p>Price: ₹60 per kg</p>
-                <button onclick="addToCart('Fresh Tomatoes', 60)">Add to Cart</button>
-            </div>
-
-            <div class="product-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Potato_and_cross_section.jpg" alt="Organic Potatoes">
-                <h3>Organic Potatoes</h3>
-                <p>Price: ₹40 per kg</p>
-                <button onclick="addToCart('Organic Potatoes', 40)">Add to Cart</button>
-            </div>
-
-            <div class="product-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Chili_peppers.jpg" alt="Dry Chilli">
-                <h3>Dry Chilli</h3>
-                <p>Price: ₹150 per kg</p>
-                <button onclick="addToCart('Dry Chilli', 150)">Add to Cart</button>
-            </div>
-
-            <div class="product-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Sorghum_bicolor.JPG" alt="Jowar">
-                <h3>Jowar</h3>
-                <p>Price: ₹30 per kg</p>
-                <button onclick="addToCart('Jowar', 30)">Add to Cart</button>
-            </div>
-
-            <div class="product-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Golden_wheat_close-up.jpg" alt="Wheat">
-                <h3>Wheat</h3>
-                <p>Price: ₹25 per kg</p>
-                <button onclick="addToCart('Wheat', 25)">Add to Cart</button>
-            </div>
-
-            <div class="product-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/68/Rice.jpg" alt="Rice">
-                <h3>Rice</h3>
-                <p>Price: ₹50 per kg</p>
-                <button onclick="addToCart('Rice', 50)">Add to Cart</button>
-            </div>
-
-            <div class="product-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Carrots_in_bunch.jpg" alt="Carrots">
-                <h3>Carrots</h3>
-                <p>Price: ₹50 per kg</p>
-                <button onclick="addToCart('Carrots', 50)">Add to Cart</button>
-            </div>
-
-            <div class="product-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Spinach_leaves.jpg" alt="Spinach">
-                <h3>Spinach</h3>
-                <p>Price: ₹20 per bunch</p>
-                <button onclick="addToCart('Spinach', 20)">Add to Cart</button>
-            </div>
-
-            <div class="product-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Red_and_green_bell_peppers.jpg" alt="Bell Peppers">
-                <h3>Bell Peppers</h3>
-                <p>Price: ₹80 per kg</p>
-                <button onclick="addToCart('Bell Peppers', 80)">Add to Cart</button>
-            </div>
-
-            <div class="product-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Eggs_in_carton.jpg" alt="Free-range Eggs">
-                <h3>Free-range Eggs</h3>
-                <p>Price: ₹120 per dozen</p>
-                <button onclick="addToCart('Free-range Eggs', 120)">Add to Cart</button>
-            </div>
-
-            <div class="product-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Brinjal.jpg" alt="Brinjal">
-                <h3>Brinjal (Eggplant)</h3>
-                <p>Price: ₹40 per kg</p>
-                <button onclick="addToCart('Brinjal', 40)">Add to Cart</button>
-            </div>
-
-            <div class="product-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Turmeric_root.jpg" alt="Turmeric">
-                <h3>Turmeric</h3>
-                <p>Price: ₹200 per kg</p>
-                <button onclick="addToCart('Turmeric', 200)">Add to Cart</button>
-            </div>
-
-            <div class="product-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Onions.jpg" alt="Onions">
-                <h3>Onions</h3>
-                <p>Price: ₹30 per kg</p>
-                <button onclick="addToCart('Onions', 30)">Add to Cart</button>
-            </div>
-
-            <div class="product-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/58/GarlicBulbs.jpg" alt="Garlic">
-                <h3>Garlic</h3>
-                <p>Price: ₹100 per kg</p>
-                <button onclick="addToCart('Garlic', 100)">Add to Cart</button>
-            </div>
-
-            <div class="product-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Cucumber.jpg" alt="Cucumber">
-                <h3>Cucumber</h3>
-                <p>Price: ₹25 per kg</p>
-                <button onclick="addToCart('Cucumber', 25)">Add to Cart</button>
-            </div>
-
-            <div class="product-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Bhindi.jpg" alt="Okra">
-                <h3>Okra (Lady Finger)</h3>
-                <p>Price: ₹45 per kg</p>
-                <button onclick="addToCart('Okra', 45)">Add to Cart</button>
-            </div>
-
-            <div class="product-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/9/9c/Green_Gram.JPG" alt="Green Gram">
-                <h3>Green Gram (Moong Dal)</h3>
-                <p>Price: ₹70 per kg</p>
-                <button onclick="addToCart('Green Gram', 70)">Add to Cart</button>
-            </div>
-
-            <div class="product-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Mustard_seeds.jpg" alt="Mustard Seeds">
-                <h3>Mustard Seeds</h3>
-                <p>Price: ₹90 per kg</p>
-                <button onclick="addToCart('Mustard Seeds', 90)">Add to Cart</button>
-            </div>
-
-            <div class="product-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/Peanuts_-_groundnut.jpg" alt="Groundnut">
-                <h3>Groundnut</h3>
-                <p>Price: ₹85 per kg</p>
-                <button onclick="addToCart('Groundnut', 85)">Add to Cart</button>
-
-        </div>
-    </section>
-    <h2>Uploaded Products from Farmers</h2>
-    <div id="uploaded-product-list" class="product-list"></div>
-    <section>
-	<div>
-               <h3>Useful Links</h3>
-               <ul>
-                <li><a href="terms-and-services.html">Terms & Services</a></li>
-                <li><a href="shipping-delivery-policy.html">Shipping & Delivery Policy</a></li>
-                <li><a href="privacy-policy.html">Privacy policy</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-                <li><a href="about.html">About us</a></li>
-                <li><a href="FAQ.html">FAQs</a></li>
-               </ul>
+        <div class="product-list" id="product-list">
+            <!-- Products will be populated by JavaScript -->
         </div>
     </section>
 
-    <script>
-        let cartCount = 0;
+    <section id="farmer-products" style="display: none;">
+        <h2>Products from Local Farmers</h2>
+        <div class="product-list" id="farmer-product-list">
+            <!-- Farmer products will be populated by JavaScript -->
+        </div>
+    </section>
 
-        function addToCart(productName, productPrice) {
-            cartCount++;
-            document.getElementById('cart-count').innerText = cartCount;
-            alert(`${productName} added to cart! Price: ₹${productPrice}`);
-        }
+    <section style="background: #f8f9fa; padding: 40px 20px; margin-top: 50px;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h3 style="text-align: center; color: #4CAF50; margin-bottom: 30px;">Useful Links</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: center;">
+                <div>
+                    <a href="terms-and-services.html" style="color: #333; text-decoration: none; font-weight: 500;">Terms & Services</a>
+                </div>
+                <div>
+                    <a href="shipping-delivery-policy.html" style="color: #333; text-decoration: none; font-weight: 500;">Shipping & Delivery Policy</a>
+                </div>
+                <div>
+                    <a href="privacy-policy.html" style="color: #333; text-decoration: none; font-weight: 500;">Privacy Policy</a>
+                </div>
+                <div>
+                    <a href="contact.html" style="color: #333; text-decoration: none; font-weight: 500;">Contact Us</a>
+                </div>
+                <div>
+                    <a href="about.html" style="color: #333; text-decoration: none; font-weight: 500;">About us</a>
+                </div>
+                <div>
+                    <a href="FAQ.html" style="color: #333; text-decoration: none; font-weight: 500;">FAQs</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        function displayUploadedProducts() {
-            const products = JSON.parse(localStorage.getItem('uploadedProducts')) || [];
-            const productList = document.getElementById('uploaded-products');
-
-            productList.innerHTML = '';
-            products.forEach(product => {
-                const productItem = document.createElement('div');
-                productItem.classList.add('product-item');
-                productItem.innerHTML = `
-                    <h3>${product.name}</h3>
-                    <p>Price: ₹${product.price}</p>
-                    <p>Quantity: ${product.quantity}</p>
-                    <p>Location: ${product.location}</p>
-                    <button onclick="addToCart('${product.name}', ${product.price})">Add to Cart</button>
-                `;
-                productList.appendChild(productItem);
-            });
-        }
-
-        displayUploadedProducts();
-    </script>
-
-
-     <footer>
+    <footer>
         <p>&copy; 2024 Farmers' Online Store. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Complete product data with all items from original
+        const products = [
+            {
+                id: 1,
+                name: 'Fresh Tomatoes',
+                price: 60,
+                image: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Tomato_je.jpg',
+                category: 'vegetables'
+            },
+            {
+                id: 2,
+                name: 'Organic Potatoes',
+                price: 40,
+                image: 'https://www.crimsoncoward.com/wp-content/uploads/2023/05/potatoes-scaled.jpg',
+                category: 'vegetables'
+            },
+            {
+                id: 3,
+                name: 'Dry Chilli',
+                price: 150,
+                image: 'https://gramiyum.in/wp-content/uploads/2022/09/Dry-chilli-Long.jpg',
+                category: 'spices'
+            },
+            {
+                id: 4,
+                name: 'Jowar',
+                price: 30,
+                image: 'https://aarogyamastu-bluehost.b-cdn.net/wp-content/uploads/2022/10/image-85.jpg',
+                category: 'grains'
+            },
+            {
+                id: 5,
+                name: 'Wheat',
+                price: 25,
+                image: 'https://m.media-amazon.com/images/I/51QQu6SogmL._UF1000,1000_QL80_.jpg',
+                category: 'grains'
+            },
+            {
+                id: 6,
+                name: 'Rice',
+                price: 50,
+                image: 'https://5.imimg.com/data5/KF/HA/MY-40877686/white-rice-grain-500x500.jpg',
+                category: 'grains'
+            },
+            {
+                id: 7,
+                name: 'Carrots',
+                price: 50,
+                image: 'https://bcfresh.ca/wp-content/uploads/2021/11/Carrots.jpg',
+                category: 'vegetables'
+            },
+            {
+                id: 8,
+                name: 'Spinach',
+                price: 20,
+                image: 'https://www.onlin.in/public/images/DailyDrop/products/67739aaa6f9f6-6773a37e89445.jpg',
+                category: 'vegetables'
+            },
+            {
+                id: 9,
+                name: 'Bell Peppers',
+                price: 80,
+                image: 'https://cdn.britannica.com/12/147312-050-BEC6A59E/Bell-peppers.jpg',
+                category: 'vegetables'
+            },
+            {
+                id: 10,
+                name: 'Free-range Eggs',
+                price: 120,
+                image: 'https://happyegg.com/assets/Uploads/Hart_12-Count_FR_LG_Open-pd.png',
+                category: 'dairy'
+            },
+            {
+                id: 11,
+                name: 'Brinjal (Eggplant)',
+                price: 40,
+                image: 'https://fujifarms.in/wp-content/uploads/2025/04/Brinjal.jpg',
+                category: 'vegetables'
+            },
+            {
+                id: 12,
+                name: 'Turmeric',
+                price: 200,
+                image: 'https://www.viralspices.com/wp-content/uploads/2024/11/Untitled-1.jpg',
+                category: 'spices'
+            },
+            {
+                id: 13,
+                name: 'Onions',
+                price: 30,
+                image: 'https://m.media-amazon.com/images/I/51DJ-9xkuQL._UF894,1000_QL80_.jpg',
+                category: 'vegetables'
+            },
+            {
+                id: 14,
+                name: 'Garlic',
+                price: 100,
+                image: 'https://m.media-amazon.com/images/I/51BSNgiBDqL._UF894,1000_QL80_.jpg',
+                category: 'vegetables'
+            },
+            {
+                id: 15,
+                name: 'Cucumber',
+                price: 25,
+                image: 'https://wh.farm/wp-content/uploads/2022/09/SlicerCucumber-Featured.jpg',
+                category: 'vegetables'
+            },
+            {
+                id: 16,
+                name: 'Okra (Lady Finger)',
+                price: 45,
+                image: 'https://findfresh.in/attachments/shop_images/bhindi_600x6001.jpg',
+                category: 'vegetables'
+            },
+            {
+                id: 17,
+                name: 'Green Gram (Moong Dal)',
+                price: 70,
+                image: 'https://5.imimg.com/data5/SELLER/Default/2024/7/432463297/RR/CS/VA/39712804/indian-spices-500x500.png',
+                category: 'pulses'
+            },
+            {
+                id: 18,
+                name: 'Mustard Seeds',
+                price: 90,
+                image: 'https://thewholesaler.in/cdn/shop/products/Red-Mustard-Seeds-Rai-Seeds-Brassica-juncea-TheWholesalerCo-35827138.jpg',
+                category: 'spices'
+            },
+            {
+                id: 19,
+                name: 'Groundnut',
+                price: 85,
+                image: 'https://kandrafoods.com/wp-content/uploads/2022/12/groundnut_image-min-scaled.jpeg',
+                category: 'nuts'
+            }
+        ];
+
+        // Function to render products
+        function renderProducts(productsArray, containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            container.innerHTML = productsArray.map(product => `
+                <div class="product-item">
+                    <img src="${product.image}" alt="${product.name}" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
+                    <h3>${product.name}</h3>
+                    <p>Price: ₹${product.price} per kg</p>
+                    <button onclick="addToCart(${product.id})">Add to Cart</button>
+                </div>
+            `).join('');
+        }
+
+        // Function to add product to cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product && window.cartManager) {
+                window.cartManager.addToCart(product);
+            }
+        }
+
+        // Function to load farmer products
+        function loadFarmerProducts() {
+            const farmerProducts = JSON.parse(localStorage.getItem('farm2home_farmer_products')) || [];
+            const container = document.getElementById('farmer-product-list');
+            const section = document.getElementById('farmer-products');
+
+            if (farmerProducts.length > 0) {
+                section.style.display = 'block';
+                container.innerHTML = farmerProducts.map(product => `
+                    <div class="product-item">
+                        <div style="background: #e8f5e9; padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+                            <small style="color: #4CAF50;">From Local Farmer</small>
+                        </div>
+                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="${product.name}">
+                        <h3>${product.name}</h3>
+                        <p>Price: ₹${product.price}</p>
+                        <p>Quantity: ${product.quantity}</p>
+                        <p><small>Location: ${product.location}</small></p>
+                        <button onclick="addFarmerProductToCart('${product.id}')">Add to Cart</button>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function addFarmerProductToCart(productId) {
+            const farmerProducts = JSON.parse(localStorage.getItem('farm2home_farmer_products')) || [];
+            const product = farmerProducts.find(p => p.id === productId);
+            if (product && window.cartManager) {
+                window.cartManager.addToCart({
+                    id: 'farmer-' + product.id,
+                    name: product.name,
+                    price: parseFloat(product.price),
+                    image: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+                    isFarmerProduct: true
+                });
+            }
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProducts(products, 'product-list');
+            loadFarmerProducts();
+        });
+    </script>
 </body>
 </html>
