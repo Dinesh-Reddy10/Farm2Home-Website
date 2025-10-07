@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <script src="cart-manager.js" defer></script>
     <script src="script.js" defer></script>
     <title>Cart - Farmers' Market</title>
 </head>
@@ -13,13 +14,23 @@
             <span class="logo-icon">🌾</span>
             <h1>Farmers' Market</h1>
         </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search products..." />
+            <button type="button">Search</button>
+        </div>
+        <div class="signup">
+            <!-- Dynamically filled by authManager -->
+        </div>
+    </header>
+
+    <header class="header2">
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="products.html">Products</a></li>
+                <li><a href="index.html#products">Products</a></li>
+                <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
             </ul>
         </nav>
     </header>
@@ -27,73 +38,41 @@
     <main>
         <section id="cart">
             <h2>Your Shopping Cart</h2>
-            <div class="cart-items">
-                <div class="cart-item">
-                    <img src="https://via.placeholder.com/100x100.png?text=Tomatoes" alt="Tomatoes">
-                    <div class="item-details">
-                        <h3>Tomatoes</h3>
-                        <p>Fresh and juicy tomatoes</p>
-                        <p>Price: ₹50/kg</p>
-                        <div class="quantity">
-                            <label for="qty1">Qty:</label>
-                            <input type="number" id="qty1" name="qty1" value="1" min="1">
-                        </div>
-                        <button class="remove-btn">Remove</button>
-                    </div>
-                </div>
-                <div class="cart-item">
-                    <img src="https://via.placeholder.com/100x100.png?text=Mangoes" alt="Mangoes">
-                    <div class="item-details">
-                        <h3>Mangoes</h3>
-                        <p>Sweet and ripe mangoes</p>
-                        <p>Price: ₹100/kg</p>
-                        <div class="quantity">
-                            <label for="qty2">Qty:</label>
-                            <input type="number" id="qty2" name="qty2" value="1" min="1">
-                        </div>
-                        <button class="remove-btn">Remove</button>
-                    </div>
-                </div>
-                <div class="cart-item">
-                    <img src="https://via.placeholder.com/100x100.png?text=Garlic" alt="Garlic">
-                    <div class="item-details">
-                        <h3>Garlic</h3>
-                        <p>Fresh garlic for cooking</p>
-                        <p>Price: ₹80/kg</p>
-                        <div class="quantity">
-                            <label for="qty3">Qty:</label>
-                            <input type="number" id="qty3" name="qty3" value="1" min="1">
-                        </div>
-                        <button class="remove-btn">Remove</button>
-                    </div>
-                </div>
-                <div class="cart-item">
-                    <img src="https://via.placeholder.com/100x100.png?text=Jowar" alt="Jowar">
-                    <div class="item-details">
-                        <h3>Jowar</h3>
-                        <p>Nutritious jowar flour</p>
-                        <p>Price: ₹60/kg</p>
-                        <div class="quantity">
-                            <label for="qty4">Qty:</label>
-                            <input type="number" id="qty4" name="qty4" value="1" min="1">
-                        </div>
-                        <button class="remove-btn">Remove</button>
-                    </div>
-                </div>
+            
+            <div id="empty-cart-message" class="text-center" style="display: none;">
+                <div style="font-size: 48px; margin-bottom: 20px;">🛒</div>
+                <h3>Your cart is empty</h3>
+                <p>Add some fresh products to get started!</p>
+                <a href="index.html#products" class="checkout-btn" style="display: inline-block; width: auto; padding: 12px 30px; text-decoration: none;">
+                    Continue Shopping
+                </a>
             </div>
 
-            <div class="delivery-check">
-                <h3>Check Delivery Availability</h3>
-                <input type="text" id="pincode" placeholder="Enter your PIN code" maxlength="6">
-                <button id="checkDeliveryBtn">Check Delivery</button>
-                <p id="deliveryMessage"></p>
-            </div>
+            <div id="cart-content">
+                <div class="cart-items" id="cart-items-container">
+                    <!-- Cart items will be populated by JavaScript -->
+                </div>
 
-            <div class="cart-summary">
-                <h3>Cart Summary</h3>
-                <p>Total Items: <span id="totalItems">4</span></p>
-                <p>Total Price: <span id="totalPrice">₹290</span></p>
-                <button class="checkout-btn">Proceed to Checkout</button>
+                <div class="delivery-check">
+                    <h3>Check Delivery Availability</h3>
+                    <div style="display: flex; gap: 10px; align-items: center; max-width: 400px; margin: 15px 0;">
+                        <input type="text" id="pincode" placeholder="Enter your PIN code" maxlength="6" 
+                               style="flex: 1; padding: 12px; border: 2px solid #ddd; border-radius: 8px;">
+                        <button id="checkDeliveryBtn" style="padding: 12px 25px;">Check Delivery</button>
+                    </div>
+                    <p id="deliveryMessage" style="margin-top: 10px; font-weight: bold;"></p>
+                </div>
+
+                <div class="cart-summary">
+                    <h3>Cart Summary</h3>
+                    <p>Total Items: <span id="totalItems">0</span></p>
+                    <p>Total Price: <span id="totalPrice">₹0</span></p>
+                    <p>Delivery Charge: <span id="deliveryCharge">₹50</span></p>
+                    <p style="font-size: 1.2em; font-weight: bold; border-top: 2px solid #ddd; padding-top: 10px; margin-top: 10px;">
+                        Final Amount: <span id="finalAmount">₹50</span>
+                    </p>
+                    <button class="checkout-btn" id="proceedToCheckout">Proceed to Checkout</button>
+                </div>
             </div>
         </section>
     </main>
@@ -103,49 +82,92 @@
     </footer>
 
     <script>
-        const quantities = document.querySelectorAll('input[type="number"]');
-        const totalItemsElement = document.getElementById('totalItems');
-        const totalPriceElement = document.getElementById('totalPrice');
-        const checkDeliveryBtn = document.getElementById('checkDeliveryBtn');
-        const pincodeInput = document.getElementById('pincode');
-        const deliveryMessage = document.getElementById('deliveryMessage');
+        function renderCart() {
+            const cart = window.cartManager.cart;
+            const container = document.getElementById('cart-items-container');
+            const emptyMessage = document.getElementById('empty-cart-message');
+            const cartContent = document.getElementById('cart-content');
+            const totalItemsElement = document.getElementById('totalItems');
+            const totalPriceElement = document.getElementById('totalPrice');
+            const finalAmountElement = document.getElementById('finalAmount');
 
-        function updateCart() {
-            let totalItems = 0;
-            let totalPrice = 0;
+            if (cart.length === 0) {
+                emptyMessage.style.display = 'block';
+                cartContent.style.display = 'none';
+                return;
+            }
 
-            quantities.forEach((input, index) => {
-                const price = parseInt(input.parentElement.previousElementSibling.innerText.split('₹')[1].split('/kg')[0]);
-                totalItems += parseInt(input.value);
-                totalPrice += price * parseInt(input.value);
-            });
+            emptyMessage.style.display = 'none';
+            cartContent.style.display = 'block';
 
-            totalItemsElement.innerText = totalItems;
-            totalPriceElement.innerText = '₹' + totalPrice;
+            container.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
+                    <div class="item-details">
+                        <h3>${item.name}</h3>
+                        <p>Price: ₹${item.price} per kg</p>
+                        <div class="quantity">
+                            <label for="qty-${item.id}">Qty:</label>
+                            <input type="number" id="qty-${item.id}" value="${item.quantity}" min="1" 
+                                   onchange="updateQuantity('${item.id}', this.value)">
+                        </div>
+                        <p>Subtotal: ₹${item.price * item.quantity}</p>
+                        <button class="remove-btn" onclick="removeItem('${item.id}')">Remove</button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Update totals
+            const totalItems = window.cartManager.getTotalItems();
+            const totalPrice = window.cartManager.getTotalPrice();
+            const deliveryCharge = totalPrice > 500 ? 0 : 50;
+            const finalAmount = totalPrice + deliveryCharge;
+
+            totalItemsElement.textContent = totalItems;
+            totalPriceElement.textContent = `₹${totalPrice}`;
+            document.getElementById('deliveryCharge').textContent = `₹${deliveryCharge}`;
+            finalAmountElement.textContent = `₹${finalAmount}`;
         }
 
-        quantities.forEach(input => {
-            input.addEventListener('change', updateCart);
-        });
+        function updateQuantity(productId, newQuantity) {
+            window.cartManager.updateQuantity(productId, parseInt(newQuantity));
+            renderCart();
+        }
 
-        const removeButtons = document.querySelectorAll('.remove-btn');
-        removeButtons.forEach((btn, index) => {
-            btn.addEventListener('click', () => {
-                btn.parentElement.parentElement.remove();
-                updateCart();
+        function removeItem(productId) {
+            window.cartManager.removeFromCart(productId);
+            renderCart();
+        }
+
+        // Initialize cart display
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCart();
+
+            // Delivery check functionality
+            document.getElementById('checkDeliveryBtn').addEventListener('click', function() {
+                const pincode = document.getElementById('pincode').value;
+                const messageElement = document.getElementById('deliveryMessage');
+
+                if (pincode.length === 6 && /^\d+$/.test(pincode)) {
+                    messageElement.textContent = "🎉 Delivery is available to your location!";
+                    messageElement.style.color = "green";
+                } else {
+                    messageElement.textContent = "Please enter a valid 6-digit PIN code.";
+                    messageElement.style.color = "red";
+                }
             });
-        });
 
-        checkDeliveryBtn.addEventListener('click', () => {
-            const pincode = pincodeInput.value;
+            // Proceed to checkout
+            document.getElementById('proceedToCheckout').addEventListener('click', function() {
+                if (window.cartManager.cart.length === 0) {
+                    alert('Your cart is empty!');
+                    return;
+                }
+                window.location.href = 'checkout.html';
+            });
 
-            if (pincode.length === 6 && /^\d+$/.test(pincode)) {
-                deliveryMessage.innerText = "Delivery is available to your location!";
-                deliveryMessage.style.color = "green";
-            } else {
-                deliveryMessage.innerText = "Please enter a valid 6-digit PIN code.";
-                deliveryMessage.style.color = "red";
-            }
+            // Listen for cart updates
+            window.addEventListener('cartUpdated', renderCart);
         });
     </script>
 </body>
