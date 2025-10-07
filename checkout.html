@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="cart-manager.js" defer></script>
+    <script src="script.js" defer></script>
+    <title>Checkout - Farmers' Market</title>
+    <style>
+        .checkout-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 40px;
+        }
+
+        .checkout-section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .checkout-section h3 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e8f5e9;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        .payment-method {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-option:hover {
+            border-color: #4CAF50;
+        }
+
+        .payment-option.selected {
+            border-color: #4CAF50;
+            background-color: #e8f5e9;
+        }
+
+        .payment-option input {
+            margin-right: 15px;
+        }
+
+        .payment-details {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .order-summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <span class="logo-icon">🌾</span>
+            <h1>Farmers' Market</h1>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search products..." />
+            <button type="button">Search</button>
+        </div>
+        <div class="signup">
+            <!-- Dynamically filled by authManager -->
+        </div>
+    </header>
+
+    <header class="header2">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#products">Products</a></li>
+                <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="checkout-container">
+            <div class="checkout-main">
+                <div class="checkout-section">
+                    <h3>Shipping Information</h3>
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Shipping Address</label>
+                        <textarea id="address" rows="3" required></textarea>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pincode">PIN Code</label>
+                            <input type="text" id="pincode" maxlength="6" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkout-section">
+                    <h3>Payment Method</h3>
+                    <div class="payment-method">
+                        <div class="payment-option" onclick="selectPayment('card')">
+                            <input type="radio" name="payment" id="card" value="card">
+                            <label for="card">Credit/Debit Card</label>
+                        </div>
+                        <div class="payment-option" onclick="selectPayment('upi')">
+                            <input type="radio" name="payment" id="upi" value="upi">
+                            <label for="upi">UPI Payment</label>
+                        </div>
+                        <div class="payment-option" onclick="selectPayment('cod')">
+                            <input type="radio" name="payment" id="cod" value="cod">
+                            <label for="cod">Cash on Delivery</label>
+                        </div>
+
+                        <div id="card-details" class="payment-details">
+                            <div class="form-group">
+                                <label for="cardNumber">Card Number</label>
+                                <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                <div class="form-group">
+                                    <label for="expiry">Expiry Date</label>
+                                    <input type="text" id="expiry" placeholder="MM/YY" maxlength="5">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cvv">CVV</label>
+                                    <input type="text" id="cvv" placeholder="123" maxlength="3">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="upi-details" class="payment-details">
+                            <div class="form-group">
+                                <label for="upiId">UPI ID</label>
+                                <input type="text" id="upiId" placeholder="yourname@upi">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkout-sidebar">
+                <div class="checkout-section">
+                    <h3>Order Summary</h3>
+                    <div id="order-items">
+                        <!-- Order items will be populated by JavaScript -->
+                    </div>
+                    <div class="order-total">
+                        <span>Total:</span>
+                        <span id="order-total-amount">₹0</span>
+                    </div>
+                    <button class="checkout-btn" id="place-order-btn" style="width: 100%; margin-top: 20px;">
+                        Place Order
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Farmers Online Store</p>
+    </footer>
+
+    <script>
+        function selectPayment(method) {
+            // Update radio button
+            document.getElementById(method).checked = true;
+            
+            // Update UI
+            document.querySelectorAll('.payment-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+            
+            // Show relevant payment details
+            document.querySelectorAll('.payment-details').forEach(detail => {
+                detail.style.display = 'none';
+            });
+            
+            if (method === 'card') {
+                document.getElementById('card-details').style.display = 'block';
+            } else if (method === 'upi') {
+                document.getElementById('upi-details').style.display = 'block';
+            }
+        }
+
+        function renderOrderSummary() {
+            const cart = window.cartManager.cart;
+            const container = document.getElementById('order-items');
+            const totalAmount = document.getElementById('order-total-amount');
+
+            if (cart.length === 0) {
+                container.innerHTML = '<p>Your cart is empty</p>';
+                totalAmount.textContent = '₹0';
+                return;
+            }
+
+            const totalPrice = window.cartManager.getTotalPrice();
+            const deliveryCharge = totalPrice > 500 ? 0 : 50;
+            const finalAmount = totalPrice + deliveryCharge;
+
+            container.innerHTML = cart.map(item => `
+                <div class="order-summary-item">
+                    <span>${item.name} (${item.quantity} kg)</span>
+                    <span>₹${item.price * item.quantity}</span>
+                </div>
+            `).join('') + `
+                <div class="order-summary-item">
+                    <span>Delivery Charge</span>
+                    <span>₹${deliveryCharge}</span>
+                </div>
+            `;
+
+            totalAmount.textContent = `₹${finalAmount}`;
+        }
+
+        function placeOrder() {
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const city = document.getElementById('city').value;
+            const pincode = document.getElementById('pincode').value;
+            const paymentMethod = document.querySelector('input[name="payment"]:checked');
+
+            if (!fullName || !email || !phone || !address || !city || !pincode) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            if (!paymentMethod) {
+                alert('Please select a payment method.');
+                return;
+            }
+
+            if (paymentMethod.value === 'card') {
+                const cardNumber = document.getElementById('cardNumber').value;
+                const expiry = document.getElementById('expiry').value;
+                const cvv = document.getElementById('cvv').value;
+                
+                if (!cardNumber || !expiry || !cvv) {
+                    alert('Please fill in all card details.');
+                    return;
+                }
+            }
+
+            if (paymentMethod.value === 'upi') {
+                const upiId = document.getElementById('upiId').value;
+                if (!upiId) {
+                    alert('Please enter your UPI ID.');
+                    return;
+                }
+            }
+
+            // Simulate order processing
+            const orderId = 'ORD' + Date.now();
+            
+            // Clear cart
+            window.cartManager.clearCart();
+            
+            // Show success message
+            alert(`🎉 Order Placed Successfully!\n\nOrder ID: ${orderId}\nThank you for shopping with Farmers' Market!`);
+            
+            // Redirect to home page
+            window.location.href = 'index.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderOrderSummary();
+
+            document.getElementById('place-order-btn').addEventListener('click', placeOrder);
+
+            // Format card number input
+            document.getElementById('cardNumber')?.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+                let formattedValue = value.match(/.{1,4}/g)?.join(' ');
+                if (formattedValue) {
+                    e.target.value = formattedValue;
+                }
+            });
+
+            // Format expiry date input
+            document.getElementById('expiry')?.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\//g, '').replace(/[^0-9]/gi, '');
+                if (value.length >= 2) {
+                    value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                }
+                e.target.value = value;
+            });
+        });
+    </script>
+</body>
+</html>
