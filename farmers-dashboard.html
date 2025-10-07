@@ -3,116 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
     <title>Farmer's Dashboard</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            color: #333;
-            background-color: #f4f4f4;
-            margin: 0;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: green;
-            color: white;
-            padding: 10px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            font-weight: bold;
-        }
-
-        .logo-icon {
-            margin-right: 10px;
-            font-size: 40px;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav li {
-            margin: 0 15px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: white;
-            font-size: 18px;
-        }
-
-        nav a:hover {
-            color: orange;
-        }
-
-        main {
-            background: white;
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
-            margin: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
         }
 
-        h2 {
-            color: green;
-        }
-
-        .greeting {
-            font-size: 18px;
+        .dashboard-header {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
             color: white;
-        }
-
-        footer {
-            margin-top: 20px;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
             text-align: center;
         }
 
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            border-left: 5px solid #4CAF50;
+        }
+
+        .stat-card h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .stat-card .number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #4CAF50;
+            margin: 10px 0;
+        }
+
         .upload-form {
-            display: flex;
-            flex-direction: column;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        .quantity-group {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
             gap: 10px;
         }
 
-        .upload-form input, 
-        .upload-form select, 
-        .upload-form textarea {
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .upload-form button {
-            background-color: green;
+        .upload-btn {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
             color: white;
             border: none;
-            padding: 12px;
-            border-radius: 5px;
+            padding: 15px 30px;
+            border-radius: 8px;
             cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
         }
 
-        #product-list {
+        .upload-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 10px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
         }
 
         .product-card {
-            background: #e8f5e9;
-            border: 1px solid #c8e6c9;
-            border-radius: 8px;
-            padding: 15px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .product-card h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .product-card .price {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #4CAF50;
+            margin: 10px 0;
+        }
+
+        .product-card .meta {
+            color: #666;
+            font-size: 0.9em;
+            margin: 5px 0;
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ff4757;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+        }
+
+        .delete-btn:hover {
+            background: #ff3742;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+
+        .empty-state .icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .section-anchor {
+            scroll-margin-top: 100px;
         }
     </style>
 </head>
@@ -122,43 +204,113 @@
             <span class="logo-icon">🌾</span>
             <h1>Farmer's Dashboard</h1>
         </div>
-        <div class="greeting" id="user-greeting">Hello, User</div>
+        <div class="user-greeting" id="user-greeting" style="color: white; font-weight: bold;"></div>
         <nav>
             <ul>
                 <li><a href="farmers-dashboard.html">Home</a></li>
-                <li><a href="#updates" id="updates-link">Updates</a></li>
-                <li><a href="#your-uploads" id="uploads-link">Your Uploads</a></li>
-                <li><a href="login.html">Logout</a></li>
+                <li><a href="#your-uploads">Your Uploads</a></li>
+                <li><a href="index.html">Marketplace</a></li>
+                <li><a href="#" onclick="authManager.logout()">Logout</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <section>
+    <main class="dashboard-container">
+        <div class="dashboard-header">
+            <h1>Welcome to Your Farming Hub</h1>
+            <p>Manage your products and connect with customers directly</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Products</h3>
+                <div class="number" id="totalProducts">0</div>
+                <p>Active listings</p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Views</h3>
+                <div class="number" id="totalViews">0</div>
+                <p>Product impressions</p>
+            </div>
+            <div class="stat-card">
+                <h3>Orders</h3>
+                <div class="number" id="totalOrders">0</div>
+                <p>This month</p>
+            </div>
+            <div class="stat-card">
+                <h3>Earnings</h3>
+                <div class="number">₹<span id="totalEarnings">0</span></div>
+                <p>Lifetime</p>
+            </div>
+        </div>
+
+        <section class="upload-form">
             <h2>Upload New Product</h2>
-            <form id="upload-form" class="upload-form">
-                <input type="text" name="product_name" placeholder="Product Name" required>
-                <input type="number" name="price" placeholder="Price (INR)" required>
-                <div style="display: flex; gap: 10px;">
-                    <input type="number" name="quantity" placeholder="Quantity" required>
-                    <select name="quantity_unit" required>
-                        <option value="">Select Unit</option>
-                        <option value="kg">Kilograms (kg)</option>
-                        <option value="quintal">Quintals (quintal)</option>
-                        <option value="liter">Liters (liter)</option>
-                        <option value="pcs">Pieces (pcs)</option>
-                    </select>
+            <form id="productForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="productName">Product Name *</label>
+                        <input type="text" id="productName" name="productName" placeholder="e.g., Organic Tomatoes" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price (₹) *</label>
+                        <input type="number" id="price" name="price" placeholder="e.g., 60" min="1" required>
+                    </div>
                 </div>
-                <input type="text" name="location" placeholder="Location" required>
-                <input type="text" name="phone" placeholder="Your Phone Number" required>
-                <textarea name="description" placeholder="Description (optional)"></textarea>
-                <button type="button" id="upload-btn">Upload Product</button>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="quantity">Quantity *</label>
+                        <div class="quantity-group">
+                            <input type="number" id="quantity" name="quantity" placeholder="e.g., 10" min="1" required>
+                            <select id="quantityUnit" name="quantityUnit" required>
+                                <option value="kg">kg</option>
+                                <option value="quintal">Quintal</option>
+                                <option value="liter">Liter</option>
+                                <option value="pcs">Pieces</option>
+                                <option value="bunch">Bunch</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category *</label>
+                        <select id="category" name="category" required>
+                            <option value="">Select Category</option>
+                            <option value="vegetables">Vegetables</option>
+                            <option value="fruits">Fruits</option>
+                            <option value="grains">Grains</option>
+                            <option value="spices">Spices</option>
+                            <option value="dairy">Dairy</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="location">Location *</label>
+                        <input type="text" id="location" name="location" placeholder="e.g., Punjab, India" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Contact Phone *</label>
+                        <input type="tel" id="phone" name="phone" placeholder="e.g., 9876543210" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Product Description</label>
+                    <textarea id="description" name="description" rows="4" placeholder="Describe your product..."></textarea>
+                </div>
+
+                <button type="button" class="upload-btn" onclick="uploadProduct()">Upload Product</button>
             </form>
         </section>
 
-        <section>
+        <section id="your-uploads" class="section-anchor">
             <h2>Your Uploaded Products</h2>
-            <div id="product-list"></div>
+            <div id="product-list" class="products-grid">
+                <!-- Products will be populated by JavaScript -->
+            </div>
         </section>
     </main>
 
@@ -167,56 +319,157 @@
     </footer>
 
     <script>
-        const username = sessionStorage.getItem('username') || 'User';
-        document.getElementById('user-greeting').textContent = `Hello, ${username}`;
+        // Generate unique ID
+        function generateId() {
+            return 'prod_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        }
 
-        window.onload = displayProducts;
+        function uploadProduct() {
+            const form = document.getElementById('productForm');
+            const productName = form.productName.value.trim();
+            const price = form.price.value;
+            const quantity = form.quantity.value;
+            const quantityUnit = form.quantityUnit.value;
+            const location = form.location.value.trim();
+            const phone = form.phone.value.trim();
+            const category = form.category.value;
+            const description = form.description.value.trim();
 
-        document.getElementById('upload-btn').onclick = function () {
-            const form = document.getElementById('upload-form');
+            // Validation
+            if (!productName || !price || !quantity || !location || !phone || !category) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            if (price < 1) {
+                alert('Price must be at least ₹1');
+                return;
+            }
+
+            if (quantity < 1) {
+                alert('Quantity must be at least 1');
+                return;
+            }
+
             const product = {
-                name: form.product_name.value,
-                price: form.price.value,
-                quantity: `${form.quantity.value} ${form.quantity_unit.value}`,
-                location: form.location.value,
-                phone: form.phone.value,
-                description: form.description.value
+                id: generateId(),
+                name: productName,
+                price: parseFloat(price),
+                quantity: `${quantity} ${quantityUnit}`,
+                location: location,
+                phone: phone,
+                category: category,
+                description: description,
+                uploadDate: new Date().toISOString(),
+                farmer: document.getElementById('user-greeting').textContent.replace('Hello, ', '')
             };
 
-            let products = JSON.parse(localStorage.getItem('uploadedProducts')) || [];
+            // Save to localStorage
+            let products = JSON.parse(localStorage.getItem('farm2home_farmer_products')) || [];
             products.push(product);
+            localStorage.setItem('farm2home_farmer_products', JSON.stringify(products));
 
-            localStorage.setItem('uploadedProducts', JSON.stringify(products));
+            // Also save to main products for customer view
+            let mainProducts = JSON.parse(localStorage.getItem('farm2home_products')) || [];
+            mainProducts.push({
+                ...product,
+                isFarmerProduct: true
+            });
+            localStorage.setItem('farm2home_products', JSON.stringify(mainProducts));
 
             alert('Product uploaded successfully!');
             form.reset();
-            displayProducts(); 
-        };
+            displayProducts();
+            updateStats();
+        }
 
         function displayProducts() {
             const productList = document.getElementById('product-list');
-            productList.innerHTML = ''; // Clear previous products
+            const products = JSON.parse(localStorage.getItem('farm2home_farmer_products')) || [];
 
-            const products = JSON.parse(localStorage.getItem('uploadedProducts')) || [];
-            products.forEach(product => {
-                const productCard = document.createElement('div');
-                productCard.classList.add('product-card');
-
-                productCard.innerHTML = `
-                    <h3>${product.name}</h3>
-                    <p>Price: ₹${product.price}</p>
-                    <p>Quantity: ${product.quantity}</p>
-                    <p>Location: ${product.location}</p>
-                    <p>Contact: ${product.phone}</p>
-                    <p>${product.description || 'No description provided'}</p>
+            if (products.length === 0) {
+                productList.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1 / -1;">
+                        <div class="icon">🌾</div>
+                        <h3>No Products Uploaded Yet</h3>
+                        <p>Start by uploading your first product using the form above.</p>
+                    </div>
                 `;
-                productList.appendChild(productCard);
-            });
+                return;
+            }
+
+            productList.innerHTML = products.map(product => `
+                <div class="product-card">
+                    <button class="delete-btn" onclick="deleteProduct('${product.id}')">×</button>
+                    <h3>${product.name}</h3>
+                    <div class="price">₹${product.price}</div>
+                    <div class="meta">Quantity: ${product.quantity}</div>
+                    <div class="meta">Category: ${product.category}</div>
+                    <div class="meta">Location: ${product.location}</div>
+                    <div class="meta">Contact: ${product.phone}</div>
+                    ${product.description ? `<p style="margin-top: 10px; color: #666; font-size: 0.9em;">${product.description}</p>` : ''}
+                    <div style="margin-top: 15px; font-size: 0.8em; color: #999;">
+                        Uploaded: ${new Date(product.uploadDate).toLocaleDateString()}
+                    </div>
+                </div>
+            `).join('');
         }
 
-        document.getElementById('updates-link').onclick = function () {
-            alert('You will be notified of purchases here.');
-        };
+        function deleteProduct(productId) {
+            if (!confirm('Are you sure you want to delete this product?')) {
+                return;
+            }
+
+            // Remove from farmer products
+            let farmerProducts = JSON.parse(localStorage.getItem('farm2home_farmer_products')) || [];
+            farmerProducts = farmerProducts.filter(p => p.id !== productId);
+            localStorage.setItem('farm2home_farmer_products', JSON.stringify(farmerProducts));
+
+            // Remove from main products
+            let mainProducts = JSON.parse(localStorage.getItem('farm2home_products')) || [];
+            mainProducts = mainProducts.filter(p => p.id !== productId);
+            localStorage.setItem('farm2home_products', JSON.stringify(mainProducts));
+
+            displayProducts();
+            updateStats();
+            alert('Product deleted successfully!');
+        }
+
+        function updateStats() {
+            const products = JSON.parse(localStorage.getItem('farm2home_farmer_products')) || [];
+            
+            document.getElementById('totalProducts').textContent = products.length;
+            document.getElementById('totalViews').textContent = products.length * 23; // Simulated views
+            document.getElementById('totalOrders').textContent = Math.floor(products.length * 1.5); // Simulated orders
+            
+            const totalEarnings = products.reduce((sum, product) => sum + (product.price * 5), 0); // Simulated earnings
+            document.getElementById('totalEarnings').textContent = totalEarnings.toLocaleString();
+        }
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in and is a farmer
+            const currentUser = JSON.parse(localStorage.getItem('farm2home_current_user'));
+            if (!currentUser || currentUser.type !== 'farmer') {
+                alert('Please login as a farmer to access this page.');
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Update user greeting
+            document.getElementById('user-greeting').textContent = `Hello, ${currentUser.firstName}!`;
+
+            displayProducts();
+            updateStats();
+
+            // Smooth scroll for "Your Uploads" link
+            document.querySelector('a[href="#your-uploads"]').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('your-uploads').scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
+            });
+        });
     </script>
 </body>
 </html>
